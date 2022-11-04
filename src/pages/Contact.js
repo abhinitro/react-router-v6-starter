@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import withNavigate from '../Hoc/NavHoc';
 
 class Contact extends Component {
+
     render() {
-        return (
+       return (
             <div>
-                Contact
+                Contact {this.props.params.id}
             </div>
         );
     }
 }
 
-export default Contact;
+export default withNavigate(Contact);

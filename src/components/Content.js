@@ -1,7 +1,20 @@
-import React, { Component } from "react";
-import Footer from "./Footer";
+import React, { Component, PureComponent } from "react";
+/****
+ * PureComponent --- pure component
+ * Hoc - high order component
+ * hooks
+ * 
+ */
+class Content extends PureComponent {
 
-class Content extends Component {
+  //Pure Component rerenders when state or props value be changed
+
+  /***
+   * Benefits
+   * Performance increase
+   * View Purpose mostly
+   * 
+   */
   // eslint-disable-next-line no-useless-constructor
   constructor(props) {
     super(props);
@@ -9,8 +22,12 @@ class Content extends Component {
       name: "Abhilash",
       bool: false,
       state: [],
+      input:[{name:''}]
     };
   }
+
+
+  
 
   changeMethod(e) {
     e.preventDefault();
@@ -21,10 +38,11 @@ class Content extends Component {
 
   checkClick(e) {
     let bool = this.state.bool;
-    if (this.state.name) this.setState({ bool: !bool });
+    if (this.state.name) this.setState({ bool: true });
   }
 
   render() {
+    console.log("====================");
     return (
       <div>
         {this.state.bool && <h1>{this.state.name}</h1>}

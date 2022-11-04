@@ -1,28 +1,26 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Layout2 from "./pages/Layout2";
 import Contact from "./pages/Contact";
+import Content from "./components/Content";
+import Blog from "./components/Blog";
 
 /***
  * Functional follows hooks
  * Class component follows lifecycle
  *  
  */
-export default function App() {
+export default function App(props) {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="contact" element={<Contact/>}></Route>
+          <Route path="/" element={<Layout />}/>
+            <Route index element={<Content />} />
+            <Route path="contact/:id/:uId" element={<Contact />}></Route>
+            <Route path="blogs" element={<Blog></Blog>}>
           </Route>
-          <Route path="/admin" element={<Layout2/>}>
-            <Route path="about" element={<About />}></Route>
-          </Route>
+          
         </Routes>
       </BrowserRouter>
     </div>
