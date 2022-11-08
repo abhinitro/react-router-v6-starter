@@ -6,6 +6,7 @@ import React ,{useState}from 'react';
 const Blog = (props) => {
 
     //setState does not support
+
     const [counter,setCounter]=useState(3);
     const [name,setName]=useState("Abhilash");
     const clickme=(e)=>{
