@@ -36,7 +36,7 @@ export default function App(props) {
             <Routes>
               <Route path="/" element={<Layout />} />
               <Route index element={<Content getForm={getForm} />} />
-              <Route path="contact/:id/:uId" element={<Contact />}></Route>
+              <Route path="contact/:id" element={<Contact />}></Route>
               <Route path="blogs" element={<Blog></Blog>} />
               <Route path="about" element={<About></About>}></Route>
             </Routes>
