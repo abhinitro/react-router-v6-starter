@@ -1,63 +1,58 @@
-import React, { PureComponent } from "react";
+import React, { useState,useEffect } from "react";
+import { Form, Input } from "reactstrap";
 
-import axios from './../services/axios'
+//useContext
 
+//ROutes in Functional Component
 
-/****
- * PureComponent --- pure component
- * Hoc - high order component
- * hooks
- *
+/***
+ * hooks for routes
+ * 
+ * 
+ * 
+ * 
  */
-class Content extends PureComponent {
-  //Pure Component rerenders when state or props value be changed
 
-  /***
-   * Benefits
-   * Performance increase
-   * View Purpose mostly
-   * Functional
-   * React
-   * Redux
-   * Redux middleware
-   * Flux --- new tech
-   */
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props) {
-    super(props);
-    this.state = {
-      arr: [],
-    };
-
-  }
-
-  componentDidMount() {
-
-    console.log("axios",axios);
-    //sideEffects
-    axios.get("/employees").then(response=>{
-
-      console.log(response.data);
-
-    }).catch(error=>{
+function Content(props) {
+  let [counter, setCounter] = useState(0);
+  let [formData, setFormData] = useState({ myno: "" });
 
 
-    }) 
-  }
+  const makeCounter = () => {
+    setCounter((counter = counter + 1));
+  };
 
-  render() {
-    return (
-      <div>
-        {this.state.arr.map((item, index) => {
-          return (
-            <div key={index}>
-              <label>Name</label>:{item.name}
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
+  useEffect(()=>{
+    console.log("Blank","componentDIDMount");
+  },[])
+
+  useEffect(()=>{
+
+    console.log("update")
+    
+  },[counter])
+
+  const setForm = (e) => {
+    let key = e.target.name;
+
+    let obj = formData;
+    obj[key] = e.target.value;
+
+    setFormData(obj);
+  };
+
+  console.log(formData);
+  return (
+    <div>
+    <div onClick={(e) => makeCounter(e)}>
+      Content {counter}
+     
+      
+    </div>
+    <Form>
+    <Input type="text" name="myno" onChange={(e) => setForm(e)} />
+  </Form>
+  </div>
+  );
 }
-
 export default Content;

@@ -1,11 +1,12 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Contact from "./pages/Contact";
 import Content from "./components/Content";
 import Blog from "./components/Blog";
 import "bootstrap/dist/css/bootstrap.min.css";
 import About from "./pages/About";
+import { useRoutes } from "react-router-dom";
+
 import FormDataContext from "./context/FormData";
 import React, { useState, useContext } from "react";
 import AuthContext from "./context/AuthContext";
@@ -25,14 +26,42 @@ export default function App(props) {
   const context = useContext(FormDataContext);
 
   const secondContext = useContext(AuthContext);
+  let element = useRoutes([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          path: "/",
+          element: <Content getForm={getForm} />,
+        },
+      ],
+    },
 
-  console.log({secondContext});
+    {
+      path: "/admin",
+      element: <Layout />,
+      children: [
+        {
+          path: "/",
+          element: <About getForm={getForm} />,
+        },
+        {
+          path: "about",
+        },
+      ],
+    },
+  ]);
+
+  console.log({ secondContext });
 
   return (
     <div className="App">
       <FormDataContext.Provider value={context}>
         <AuthContext.Provider value={true}>
-          <BrowserRouter>
+          {element}
+
+          {/* <BrowserRouter>
             <Routes>
               <Route path="/" element={<Layout />} />
               <Route index element={<Content getForm={getForm} />} />
@@ -40,7 +69,7 @@ export default function App(props) {
               <Route path="blogs" element={<Blog></Blog>} />
               <Route path="about" element={<About></About>}></Route>
             </Routes>
-          </BrowserRouter>
+          </BrowserRouter> */}
         </AuthContext.Provider>
       </FormDataContext.Provider>
     </div>
