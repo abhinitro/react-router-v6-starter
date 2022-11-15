@@ -1,10 +1,14 @@
 import React,{useState,useMemo} from 'react';
+import { useSelector } from 'react-redux';
 
 const Contact = () => {
     const [count, setCount] = useState(0);
     const [todos, setTodos] = useState([]);
     const calculation = useMemo(() => expensiveCalculation(count), [count]);
   
+    const auth=useSelector(state=>state.Auth);
+
+   
     const increment = () => {
       setCount((c) => c + 1);
     };

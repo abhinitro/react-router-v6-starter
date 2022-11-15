@@ -9,11 +9,10 @@ import AuthContext from "./context/AuthContext";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 
-/***
- * Functional follows hooks
- * Class component follows lifecycle
- *
- */
+import { connect, Provider } from "react-redux";
+
+
+
 export default function App(props) {
   const [data, setFormData] = useState(null);
 
