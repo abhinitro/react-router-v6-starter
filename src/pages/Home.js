@@ -1,7 +1,8 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { incrementOrdecrement } from "./../redux/actions/user";
+import { incrementOrdecrement,getUserDetails } from "./../redux/actions/user";
 /***
  * Parent Componenr
  * State-Reducers ----(data) by using pure function
@@ -14,21 +15,33 @@ import { incrementOrdecrement } from "./../redux/actions/user";
  *
  */
 const Home = () => {
-  const data = useSelector((state) => state);
-  console.log(data);
+  const state = useSelector((state) => state);
+  const data=state.Auth;
   const dispatch = useDispatch();
 
   const increment = () => {
     let counter = data.counter;
     counter++;
 
+    
     dispatch(incrementOrdecrement(counter));
   };
+
+  useEffect(() => {
+
+
+    dispatch(getUserDetails())
+    
+  }, []);
+
+  const navigate=useNavigate();
 
   const decrement = () => {};
 
   return (
     <div>
+
+      <div onClick={(e)=>navigate('/contact')}>Move To Contact</div>
       <button
         onClick={() => {
           increment();

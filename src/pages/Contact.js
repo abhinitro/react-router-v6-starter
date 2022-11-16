@@ -8,6 +8,7 @@ const Contact = () => {
   
     const auth=useSelector(state=>state.Auth);
 
+    console.log({auth})
    
     const increment = () => {
       setCount((c) => c + 1);
