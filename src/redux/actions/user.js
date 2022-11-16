@@ -1,6 +1,22 @@
 import axios from "axios"
 
 
+
+/***
+ * Sync - Wait line by line
+ * Asyn-Do not wait for process
+ * 
+ * Redux====>useSelector= fetch the value from redux stroee
+ * 
+ * Provider=wrap parent component store=stro
+ * 
+ * action it's a plain object which contains event name and payload and call redducer method
+ * 
+ * reducer update the state and return new object 
+ * 
+ *
+ * 
+ */
 export function getUserDetails(payload){
 
 
